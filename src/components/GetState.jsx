@@ -19,7 +19,7 @@ const searchState = () =>{
       setData(res.data);
       console.log(res.data);
     }).catch(err =>{
-      setTimeout(()=> {
+      setTimeout( (err)=> {
         setErr(err.message);
       }, 1000)
   
@@ -56,10 +56,6 @@ const searchState = () =>{
 
          </div>
 
-         <em style={{marginTop:'3rem'}}>Samuel Emmanuel Onorouyiza gave me this task to learn how to CONSUME APIs 
-          because he CREATES APIs and because he wasn't satisfied with the first 
-          API project I did which he yawned at(that was the first React project I did which got me going into this wonderful Framework). 
-          You see the c words? That's how you know papa Kumuyi pikins</em>
       </div>
       );
 }
