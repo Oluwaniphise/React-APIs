@@ -49,7 +49,7 @@ export const Mealdb = () => {
 <div className='flex flex-row flex-wrap gap-x-1 text-center'>  
       { nav.categories && nav.categories.map((item) =>{
         return (
-        <p onClick={handleCategory} className='bg-gray-200 text-[10px] border border-solid  border-r-[20px] border-l-[20%] cursor-pointer p-3 my-2 mx-3 rounded' 
+        <p onClick={handleCategory} className='bg-gray-200 text-[16px] cursor-pointer p-2 my-2 mx-3 rounded' 
          key={item.idCategory}>{item.strCategory}</p>
         )
       })}
@@ -62,7 +62,7 @@ export const Mealdb = () => {
             <div key={item.idMeal} className="m-2 min-h-[100px]">
                 <div className=''>
                     <img src={item.strMealThumb ? item.strMealThumb: "sorry no picture"} alt="" />
-                <p className="text-[12px]" 
+                <p className="text-[16px]" 
          key={item.idMeal}>{item.strMeal}</p>
                 </div>
              

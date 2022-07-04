@@ -14,13 +14,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-p {
+/* p {
   font-size: 1.6rem !important;
-}
+} */
 
-h1 {
+/* h1 {
   font-size: 6rem !important;
-}
+} */
 
 .app {
   width: 100%;

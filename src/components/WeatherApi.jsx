@@ -33,21 +33,21 @@ const WeatherApi = () => {
         <div className="container">
           <div className="top">
             <div className="location">
-              <p className='text-2xl'>{data.name}</p>
+              <p className='text-5xl'>{data.name}</p>
             </div>
             
-            <div className="temp">
+            <div className="temp text-6xl">
               {/* {data.main.temp} */}
               {data.main ? <h1>{data.main.temp.toFixed()}°F</h1> : null}
             </div>
-            <div className="description">
+            <div className="description text-2xl">
               {data.weather ? <p>{data.weather[0].main}</p> : null}
             </div>
           </div>
   
   
           {data.name !== undefined &&
-            <div className="bottom">
+            <div className="bottom text-2xl">
               <div className="feels">
                 {data.main ? <p className='bold'>{data.main.feels_like.toFixed()}°F</p> : null}
                 <p>Feels Like</p>
