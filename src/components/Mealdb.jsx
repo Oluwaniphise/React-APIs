@@ -8,14 +8,11 @@ export const Mealdb = () => {
     const [category, setCategory] = useState('Beef');
     const [loading, setLoading] = useState(false);
     const [err, setErr] = useState('');
+    const [active, setActive] = useState(0);
     const url = "https://www.themealdb.com/api/json/v1/1/categories.php";
     const filterUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`;
 
-    const handleCategory = (e) => {
-        setCategory(e.target.textContent); 
-        setData([]);
-        setLoading(true);
-     }
+
     
     useEffect(() =>{
         axios.get(filterUrl).then((response) =>{
@@ -37,19 +34,30 @@ export const Mealdb = () => {
         })
     
     }, [])
-  
+
+
+    const handleCategory = (e, index) => {
+        setCategory(e.target.textContent); 
+        setData([]);
+        setLoading(true);
+        setActive(index);
+     }
     
  
   return (
     <div className='container mx-auto'>
+        <p className='my-8 text-center text-3xl '>Search by clicking on the each category.</p>
         {loading && (
             <p>Loading... Hang in there a little...</p>
         )}
        
 <div className='flex flex-row flex-wrap gap-x-1 text-center'>  
-      { nav.categories && nav.categories.map((item) =>{
+      { nav.categories && nav.categories.map((item, index) =>{
         return (
-        <p onClick={handleCategory} className='bg-gray-200 text-[16px] cursor-pointer p-2 my-2 mx-3 rounded' 
+        <p onClick={handleCategory} className={`${
+            active === index ? 
+            'active bg-gray-600  text-[16px] cursor-pointer p-2 my-2 mx-3 rounded'
+            :'bg-gray-200 text-[16px] cursor-pointer p-2 my-2 mx-3 rounded'} `}
          key={item.idCategory}>{item.strCategory}</p>
         )
       })}
