@@ -8,7 +8,7 @@ const GetState = () => {
   const [lon, setLon] = useState('');
   const[lat, setLat] = useState('');
   const[err, setErr] = useState('');
-  const abortCont = new AbortController();
+  
 
   const url = `https://api.openrouteservice.org/geocode/reverse?api_key=5b3ce3597851110001cf624833ccb80204884571b910a16b8f9957a0&point.lon=${lon}&point.lat=${lat}`;
   
@@ -19,9 +19,11 @@ const searchState = () =>{
       setData(res.data);
       console.log(res.data);
     }).catch(err =>{
-      setTimeout( (err)=> {
-        setErr(err.message);
+      setErr(err)
+      setTimeout(() => {
+        setErr('')
       }, 1000)
+  
   
 
     })
@@ -30,6 +32,9 @@ const searchState = () =>{
   }
   else{
     setErr("Fields can't be empty.")
+    setTimeout(() => {
+      setErr('')
+    }, 1000)
   }
   
 }
