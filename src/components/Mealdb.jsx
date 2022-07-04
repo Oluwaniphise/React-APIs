@@ -6,20 +6,21 @@ export const Mealdb = () => {
     const [nav, setNav] = useState([]);
     const [data, setData] = useState([]);
     const [category, setCategory] = useState('Beef');
+    const [loading, setLoading] = useState(false);
+    const [err, setErr] = useState('');
     const url = "https://www.themealdb.com/api/json/v1/1/categories.php";
     const filterUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`;
 
-    const handleCategory = (e) =>{
-        setCategory(e.target.textContent);
-      
-    }
+    const handleCategory = (e) => {
+        setCategory(e.target.textContent); 
+        setData([]);
+        setLoading(true);
+     }
     
-
-
     useEffect(() =>{
         axios.get(filterUrl).then((response) =>{
             setData(response.data);
-            console.log(response.data)
+            setLoading(false);
         }).catch(err =>{
             console.log(err)
         })
@@ -27,9 +28,10 @@ export const Mealdb = () => {
     }, [filterUrl])
 
     useEffect(() =>{
+        setLoading(true);
         axios.get(url).then((response) =>{
             setNav(response.data);
-            console.log(response.data)
+            setLoading(false);
         }).catch(err =>{
             console.log(err);
         })
@@ -40,6 +42,9 @@ export const Mealdb = () => {
  
   return (
     <div className='container mx-auto'>
+        {loading && (
+            <p>Loading... Hang in there a little...</p>
+        )}
        
 <div className='flex flex-row flex-wrap gap-x-1 text-center'>  
       { nav.categories && nav.categories.map((item) =>{
