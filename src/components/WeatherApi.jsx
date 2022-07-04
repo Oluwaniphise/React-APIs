@@ -33,7 +33,7 @@ const WeatherApi = () => {
         <div className="container">
           <div className="top">
             <div className="location">
-              <p>{data.name}</p>
+              <p className='text-2xl'>{data.name}</p>
             </div>
             
             <div className="temp">

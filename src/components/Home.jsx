@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 export const Home = () => {
     return (
         <section className='bg-gray-200 h-[100vh] py-4 text-center flex flex-col items-center'>
-            <p className='max-w-[600px]'>
+            <p className='max-w-[600px] p-2'>
                 Hi, Welcome to my API hub. Herein, you get to see the list of API projects I've worked on using Reactjs.
                 Feel free to play around.
             </p>
