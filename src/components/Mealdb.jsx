@@ -9,17 +9,24 @@ export const Mealdb = () => {
     const [loading, setLoading] = useState(false);
     const [err, setErr] = useState('');
     const [active, setActive] = useState(0);
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const [dataPerPage, setDataPerPage] = useState(10);
     const url = "https://www.themealdb.com/api/json/v1/1/categories.php";
     const filterUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`;
 
-
-    
+ 
     useEffect(() =>{
+        setLoading(true);
         axios.get(filterUrl).then((response) =>{
             setData(response.data);
             setLoading(false);
+            setErr('');
         }).catch(err =>{
-            console.log(err)
+            setLoading(true);
+            setTimeout(() =>{
+            setLoading(false);
+        }, 1500)
+            setErr(err.message);
         })
     
     }, [filterUrl])
@@ -29,8 +36,13 @@ export const Mealdb = () => {
         axios.get(url).then((response) =>{
             setNav(response.data);
             setLoading(false);
+            setErr('');
         }).catch(err =>{
-            console.log(err);
+            setLoading(true);
+            setTimeout(() =>{
+            setLoading(false);
+        }, 1500)
+        setErr(err.message);
         })
     
     }, [])
@@ -39,16 +51,25 @@ export const Mealdb = () => {
     const handleCategory = (e, index) => {
         setCategory(e.target.textContent); 
         setData([]);
+        console.log(category)
         setLoading(true);
         setActive(index);
      }
     
+    //  const indexOfLastData = currentPage *  dataPerPage;
+    //  const indexOfFirstData = indexOfLastData - dataPerPage;
+    //  const currentData = data.slice(indexOfFirstData, indexOfLastData);
+     
+     
  
   return (
     <div className='container mx-auto'>
         <p className='my-8 text-center text-3xl '>Search by clicking on the each category.</p>
         {loading && (
-            <p>Loading... Hang in there a little...</p>
+            <p>Loading... Hang in there a little</p>
+        )}
+        {err && (
+            <p className='text-red-400'>{err}</p>
         )}
        
 <div className='flex flex-row flex-wrap gap-x-1 text-center'>  

@@ -20,6 +20,7 @@ function Github() {
       // console.log(res);
     })
     .catch(err => {
+      console.log(err)
       if (err.response.data.message === "Not Found"){
         setError("User not found. Search for another user.");
         setData([]);
@@ -37,7 +38,7 @@ function Github() {
   }
   return (
   <section className="container mx-auto space-y-[3rem] flex-col flex  items-center">
-    <em className="text-2xl text-center px-3 mt-[2rem]">Search by Github username and get user's data</em>
+    <p className="text-2xl text-center px-3 mt-[2rem]">Search by Github username and get user's data</p>
     <input type="text" 
     className="w-[60%] focus:outline-none  p-3 border border-solid border-cyan-500" 
     placeholder="Search by Username" 
@@ -54,7 +55,7 @@ function Github() {
  )}
 
     {data.data && (
-      <section className="px-2 w-[60%]">
+      <section className="px-2 max-w-[800px]">
       
       <div className="flex flex-row space-x-4">
 
@@ -70,7 +71,7 @@ function Github() {
       <div className="border p-2 mt-[3rem] border-1 border-blue-500">
         <div className="flex flex-row space-x-5 ">
          <p>Created at:</p> 
-         <p>{data.data.created_at}</p>
+         <p>{data.data.created_at.toLocaleString()}</p>
         </div>
         <div className="flex flex-row space-x-1">
          <p>Location:</p> 
